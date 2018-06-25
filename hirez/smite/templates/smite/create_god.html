@@ -1,0 +1,139 @@
+{% extends "smite/base.html"%}
+{% load staticfiles %}
+{% block title %}Create God{% endblock %}
+
+{% block import_block %}
+  <link rel="stylesheet" href="{% static 'smite/css/random_god.css' %}">
+{% endblock %}
+
+{% block body_block %}
+  <!-- Loader -->
+  <div class="ui hidden text loader center-page">Wololololo..</div>
+
+  <!-- Content start -->
+  <div class="ui grid god-content">
+    <div class="four wide column"></div>
+    <div class="eight wide column">
+      <!-- God card -->
+      <figure class="snip1390 hover">
+        <img id="god-img" class="responsive-img profile" src="#" alt="" style="height:10%">
+        <figcaption>
+          <h3 id="god-name"></h3>
+          <h5 id="god-title"></h5>
+        </figcaption>
+      </figure>
+
+    <div class="ui grid center aligned">
+      <div class="four wide column"><h5 id="god-pantheon"></h5></div>
+      <div class="four wide column"><h5 id="god-role"></h5></div>
+    </div>
+      <!-- Button -->
+      <div class="ui one column stackable center aligned page grid">
+        <div class="column twelve wide">
+          <!-- Random God button -->
+          <form method="post">
+            {% csrf_token %}
+            <button id="random-god-btn" class="ui button">
+              <i class="redo icon"></i>
+              Reroll
+            </button>
+            <br>
+          </form>
+        </div>
+      </div>
+
+      <div class="ui accordion" align="center">
+        <!-- Abilities -->
+        <div class="title">
+          <i id="ability-dropdown" class="dropdown icon"></i>
+          Abilities
+        </div>
+        <div class="content">
+          {% with ''|center:5 as range %}
+          {% for _ in range %}
+          {% if forloop.counter == 5 %}
+          <div class="ui horizontal divider">
+           Passive
+          </div>
+          {% else %}
+          <div class="ui horizontal divider">
+            Ability {{ forloop.counter }}
+          </div>
+          {% endif %}
+
+          <h4 id="ability-{{ forloop.counter }}-name" align="center">Ability 1</h4>
+
+          <div class="ui grid">
+            <div class="two wide column"></div>
+            <div class="two wide column">
+              <img id="ability-{{ forloop.counter }}-img" class="ui middle aligned tiny rounded image" align="center" src="#" alt="ability-{{ forloop.counter }}-alt"/>
+            </div>
+            <div class="ten wide column">
+              <span id="ability-{{ forloop.counter }}-desc"></span>
+            </div>
+          </div>
+          {% endfor %}
+          {% endwith %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script_block %}
+<script>
+$(document).ready(function () {
+  $('.ui.accordion').accordion();
+  $(".loader").show();
+  $(".god-content").hide();
+  $.ajax({
+      method: "GET",
+      url: '{% url 'create_god_api' %}',
+      success:function (data) {
+        update(data);
+      },
+      complete: function () {
+        $(".loader").hide();
+        $(".god-content").show();
+      }
+  })
+});
+
+$("#random-god-btn").click(function () {
+  $.ajax({
+    method: "GET",
+    beforeSend: function () {
+      $(".loader").show();
+      $(".god-content").hide();
+    },
+    url: '{% url 'create_god_api' %}',
+    success:function (data) {
+      update(data);
+      console.log(data.ability_2);
+    },
+    complete: function () {
+      $(".loader").hide();
+      $(".god-content").show();
+    }
+  })
+});
+
+function update(god) {
+  $(document).attr("title", "Create God - " + god.name);
+  $("#god-name").html(god.name);
+  $("#god-title").html(god.title);
+  $("#god-pantheon").html(god.pantheon);
+  $("#god-role").html(god.role);
+  $("#god-type").html(god.type);
+  $("#god-img").attr('src', 'data:image/png;base64,'+god.img_str);
+  $("#god-img").attr('alt', god.name);
+
+  for(var i=0; i<5; i++){
+    $("#ability-"+(i+1)+"-img").attr('src', god.abilities[i].img);
+    $("#ability-"+(i+1)+"-alt").attr('alt', god.abilities[i].name);
+    $("#ability-"+(i+1)+"-desc").html( god.abilities[i].desc);
+    $("#ability-"+(i+1)+"-name").html( god.abilities[i].name);
+  }
+}
+</script>
+{% endblock %}

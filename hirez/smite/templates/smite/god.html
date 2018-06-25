@@ -1,0 +1,82 @@
+{% extends 'smite/base.html' %}
+{% load staticfiles %}
+{% block title %}Random God{% endblock %}
+
+{% block import_block %}
+  <link rel="stylesheet" href="{% static 'smite/css/random_god.css' %}">
+{% endblock %}
+{% block body_block %}
+  <!-- Loader -->
+  <div class="ui grid">
+    <div class="four wide column"></div>
+    <div class="eight wide column">
+      <div class="ui hidden text loader">Loading..</div>
+    </div>
+  </div>
+
+  <!-- Content start -->
+  <div class="ui grid god-content">
+    <div class="four wide column"></div>
+    <div class="eight wide column">
+      <!-- God card -->
+      <div class="ui hidden text loader">Loading</div>
+      <figure class="snip1390 hover">
+        <img id="god-img" class="responsive-img profile" src="{{ card }}" alt="{{ name }}" style="height:10%">
+        <figcaption>
+          <h3 id="god-name">{{ name }}</h3>
+          <h5 id="god-title">{{ title }}</h5>
+        </figcaption>
+      </figure>
+
+      <div class="ui accordion" align="center">
+        <!-- Lore -->
+        <div class="title">
+          <i class="dropdown icon"></i>
+          Lore
+        </div>
+        <div class="content">
+           <p id="god-lore" class="transition hidden">{{ lore }}</p>
+        </div>
+
+        <!-- Abilities -->
+        <div class="title">
+          <i id="ability-dropdown" class="dropdown icon"></i>
+          Abilities
+        </div>
+        <div class="content">
+          {% for ability in abilities %}
+            {% if forloop.counter == 5 %}
+            <div class="ui horizontal divider">
+             Passive
+            </div>
+            {% else %}
+            <div class="ui horizontal divider">
+              Ability {{ forloop.counter }}
+            </div>
+            {% endif %}
+
+            <h4 id="ability-{{ forloop.counter }}-name" align="center">{{ ability.name }}</h4>
+
+            <div class="ui grid">
+             <div class="two wide column"></div>
+              <div class="two wide column">
+                <img id="ability-{{ forloop.counter }}-img" class="ui middle aligned tiny rounded image" align="center" src="{{ ability.img }}" alt="{{ ability.name }}"/>
+              </div>
+              <div class="ten wide column">
+                <span id="ability-{{ forloop.counter }}-desc">{{ ability.desc }}</span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script_block %}
+  <script>
+    $(document).ready(function () {
+      $('.ui.accordion').accordion();
+    });
+  </script>
+{% endblock %}

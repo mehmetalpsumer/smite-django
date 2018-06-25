@@ -1,0 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+figure.snip1390 {
+  font-family: 'Roboto', Arial, sans-serif;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  min-width: 230px;
+  max-width: 500px;
+  width: 100%;
+  color: #000000;
+  text-align: center;
+  font-size: 16px;
+  padding: 30px;
+
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+figure.snip1390 *,
+figure.snip1390 *:before,
+figure.snip1390 *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+figure.snip1390 figcaption {
+  width: 100%;
+}
+figure.snip1390 h3,
+figure.snip1390 h5,
+figure.snip1390 blockquote {
+  margin: 0;
+}
+figure.snip1390 h3,
+figure.snip1390 h5 {
+  font-weight: 300;
+}
+
+figure.snip1390 h4 {
+  color: #a6a6a6;
+}
+figure.snip1390 .profile {
+  width: 100px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
+  border: solid 5px #A6A57A;
+}
+
+.center-page{
+    position:absolute;
+    width:780px;
+    height:650px;
+    left:50%;
+    top:50%;
+    margin-left:-390px;
+    margin-top:-325px;
+}

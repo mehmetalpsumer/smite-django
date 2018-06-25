@@ -1,0 +1,4 @@
+requests==2.19.1
+aiohttp==3.3.2
+Django==2.0.6
+Pillow==5.1.0

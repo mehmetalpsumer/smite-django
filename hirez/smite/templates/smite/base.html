@@ -1,0 +1,71 @@
+{% load staticfiles %}
+{% load tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="{% static 'smite/img/smite-icon.ico' %}" />
+  <title>
+    {% block title %}{% endblock %}
+  </title>
+
+  <!-- Jquery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+          integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+          crossorigin="anonymous"></script>
+
+  <!--FontAwesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+
+  <!-- Semantic UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+  <link href="{% static 'smite/css/base.css' %}">
+  {% block import_block %}
+
+  {% endblock %}
+</head>
+<body>
+  <div class="ui top small borderless menu">
+    <a class="active item" href="{% url 'home' %}">
+      Home
+    </a>
+     <a class="item active" href="{% url 'god_list' %}">
+      Gods
+    </a>
+    <a class="item active" href="{% url 'random_god' %}">
+      Random God
+    </a>
+    <a class="item active" href="{% url 'create_god' %}">
+      Create God (beta)
+    </a>
+    <div class="right menu">
+      <div class="item">
+        <div class="ui search">
+          <div class="ui icon input">
+            <input class="prompt" name="search" id="search" placeholder="Common passwords..." type="text">
+            <i class="search icon"></i>
+          </div>
+          <div class="results"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY for inner HTML -->
+  <div id="results">
+              </div>
+  {% block body_block %}
+  {% endblock %}
+</body>
+
+<!-- SCRIPT for BASE -->
+<script>
+</script>
+
+<!-- SCRIPT for child HTML -->
+{% block script_block %}{% endblock %}
+</html>

@@ -1,0 +1,25 @@
+{% extends 'smite/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Gods {% endblock %}
+
+{% block import_block %}
+  <link rel="stylesheet" href="{% static 'smite/css/list_god.css' %}">
+{% endblock %}
+
+{% block body_block %}
+  <div class="ui stackable grid container">
+  {% for god in gods %}
+    <div class="three wide column">
+      <figure class="snip1390 hover">
+        <a href="{% url 'god' god.slug %}"><img id="god-img" class="responsive-img profile" src="{{ god.icon_url }}" alt="{{ god.slug }}-img" style="height:10%"></a>
+        <figcaption>
+          <h3 id="god-name">{{ god.name }}</h3>
+          <h5 id="god-title">{{ god.title }}</h5>
+        </figcaption>
+      </figure>
+    </div>
+  {% endfor %}
+  </div>
+{% endblock %}
+
