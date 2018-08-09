@@ -30,23 +30,28 @@
 </head>
 <body>
   <div class="ui top small borderless menu">
-    <a class="active item" href="{% url 'home' %}">
-      Home
-    </a>
-     <a class="item active" href="{% url 'god_list' %}">
-      Gods
-    </a>
-    <a class="item active" href="{% url 'random_god' %}">
-      Random God
-    </a>
-    <a class="item active" href="{% url 'create_god' %}">
-      Create God (beta)
-    </a>
+    <div class="left menu">
+      <div class="item">
+        <img class="ui tiny image" src="{% static 'smite/img/15338272211177038.png' %}">
+      </div>
+    </div>
     <div class="right menu">
+      <a class="item" href="{% url 'home' %}">
+        Home
+      </a>
+       <a class="item" href="{% url 'god_list' %}">
+        Gods
+      </a>
+      <a class="item" href="{% url 'random_god' %}">
+        Random God
+      </a>
+      <a class="item" href="{% url 'create_god' %}">
+        Create God
+      </a>
       <div class="item">
         <div class="ui search">
           <div class="ui icon input">
-            <input class="prompt" name="search" id="search" placeholder="Common passwords..." type="text">
+            <input class="prompt" name="search" id="search" placeholder="Search gods..." type="text">
             <i class="search icon"></i>
           </div>
           <div class="results"></div>

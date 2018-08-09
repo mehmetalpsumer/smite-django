@@ -1,4 +1,5 @@
 {% extends 'smite/base.html' %}
+{% load staticfiles %}
 
 {% block title %}Home{% endblock %}
 
@@ -7,15 +8,17 @@
 {% endblock %}
 
 {% block body_block %}
-    <div class="ui grid">
-          <div class="four wide column"></div>
-          <div class="four wide column">
-              <div class="chart-container" style="position: relative; height:40vh; width:80vw">
-                  <canvas id="chart"></canvas>
-              </div>
-          </div>
-          <div class="four wide column"></div>
+  <div class="ui two column centered grid">
+    <div class="ui text container">
+      <br><br><br>
+      <img class="ui centered medium image" src="{% static 'smite/img/15338272211177038.png' %}">
+      <h1 class="ui header">
+        GENERATOR
+      </h1>
+      <h2>Generator app for SMITE by Hi-Rez.</h2>
+      <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
     </div>
+  </div>
 {% endblock %}
 
 {% block script_block %}
