@@ -13,7 +13,7 @@ from .models import God, Ability, Item, ItemDescription, ItemStat
 
 # Credentials
 dev_id = "2401"
-auth_key = "0BCFCE5329AB40769BF18D64412711FD"
+auth_key = "your_password"
 client = Client(dev_id, auth_key)
 
 
